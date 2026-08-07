@@ -1,12 +1,7 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.shiva.helloapi.dto.StudentResponseDTO
- */
 package com.shiva.helloapi.dto;
 
 public class StudentResponseDTO {
+
     private int id;
     private String name;
     private String course;
@@ -14,7 +9,11 @@ public class StudentResponseDTO {
     public StudentResponseDTO() {
     }
 
-    public StudentResponseDTO(int id, String name, String course) {
+    public StudentResponseDTO(
+            int id,
+            String name,
+            String course) {
+
         this.id = id;
         this.name = name;
         this.course = course;
@@ -44,4 +43,3 @@ public class StudentResponseDTO {
         this.course = course;
     }
 }
-

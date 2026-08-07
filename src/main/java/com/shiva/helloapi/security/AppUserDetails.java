@@ -1,13 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.shiva.helloapi.security.AppUser
- *  com.shiva.helloapi.security.AppUserDetails
- *  org.springframework.security.core.GrantedAuthority
- *  org.springframework.security.core.authority.SimpleGrantedAuthority
- *  org.springframework.security.core.userdetails.UserDetails
- */
 package com.shiva.helloapi.security;
 
 import com.shiva.helloapi.security.AppUser;

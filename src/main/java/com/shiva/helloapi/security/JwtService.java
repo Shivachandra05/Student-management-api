@@ -1,60 +1,92 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.shiva.helloapi.security.JwtService
- *  io.jsonwebtoken.Claims
- *  io.jsonwebtoken.Jwts
- *  io.jsonwebtoken.SignatureAlgorithm
- *  io.jsonwebtoken.security.Keys
- *  org.springframework.beans.factory.annotation.Value
- *  org.springframework.security.core.userdetails.UserDetails
- *  org.springframework.stereotype.Service
- */
 package com.shiva.helloapi.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JwtService {
-    @Value(value="${jwt.secret}")
+
+    @Value("${jwt.secret}")
     private String secret;
-    @Value(value="${jwt.expiration}")
+
+    @Value("${jwt.expiration}")
     private long expirationMs;
 
-    public String generateToken(UserDetails udt) {
+    public String generateToken(UserDetails userDetails) {
+
         Date now = new Date();
-        long current = now.getTime();
-        long expirytime = current + this.expirationMs;
-        Date exp = new Date(expirytime);
-        return Jwts.builder().setSubject(udt.getUsername()).setIssuedAt(now).setExpiration(exp).signWith(this.getSignKey(), SignatureAlgorithm.HS256).compact();
+
+        long currentTime = now.getTime();
+        long expiryTime = currentTime + expirationMs;
+
+        Date expirationDate =
+                new Date(expiryTime);
+
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(now)
+                .setExpiration(expirationDate)
+                .signWith(
+                        getSignKey(),
+                        SignatureAlgorithm.HS256
+                )
+                .compact();
     }
 
     private Key getSignKey() {
-        return Keys.hmacShaKeyFor((byte[])this.secret.getBytes());
+
+        return Keys.hmacShaKeyFor(
+                secret.getBytes(StandardCharsets.UTF_8)
+        );
     }
 
-    public boolean isTokenvalid(String token, UserDetails udt) {
-        Claims claim = this.extractAllClaims(token);
-        String Username = this.extractUsername(token);
-        Date exp = claim.getExpiration();
-        return Username.equals(udt.getUsername()) && exp.after(new Date());
+    public boolean isTokenValid(
+            String token,
+            UserDetails userDetails) {
+
+        Claims claims =
+                extractAllClaims(token);
+
+        String username =
+                extractUsername(token);
+
+        Date expiration =
+                claims.getExpiration();
+
+        return username.equals(
+                        userDetails.getUsername()
+                )
+                && expiration.after(
+                        new Date()
+                );
     }
 
-    private Claims extractAllClaims(String token) {
-        return (Claims)Jwts.parserBuilder().setSigningKey(this.getSignKey()).build().parseClaimsJws(token).getBody();
+    private Claims extractAllClaims(
+            String token) {
+
+        return Jwts.parserBuilder()
+                .setSigningKey(
+                        getSignKey()
+                )
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
-    public String extractUsername(String token) {
-        return this.extractAllClaims(token).getSubject();
+    public String extractUsername(
+            String token) {
+
+        return extractAllClaims(token)
+                .getSubject();
     }
 }
-

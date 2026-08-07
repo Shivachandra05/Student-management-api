@@ -1,15 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.shiva.helloapi.security.AppUser
- *  jakarta.persistence.Column
- *  jakarta.persistence.Entity
- *  jakarta.persistence.GeneratedValue
- *  jakarta.persistence.GenerationType
- *  jakarta.persistence.Id
- *  jakarta.persistence.Table
- */
 package com.shiva.helloapi.security;
 
 import jakarta.persistence.Column;
@@ -20,16 +8,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class AppUser {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable=false, unique=true)
+
+    @Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable=false)
+
+    @Column(nullable = false)
     private String password;
-    @Column(nullable=false)
+
+    @Column(nullable = false)
     private String role;
 
     public AppUser() {
@@ -69,4 +61,3 @@ public class AppUser {
         this.role = role;
     }
 }
-

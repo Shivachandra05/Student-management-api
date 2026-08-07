@@ -1,21 +1,22 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.shiva.helloapi.exception.ApiError
- */
 package com.shiva.helloapi.exception;
 
 import java.time.LocalDateTime;
 
 public class ApiError {
+
     private LocalDateTime timestamp;
     private int status;
     private String error;
     private String message;
     private String path;
 
-    public ApiError(LocalDateTime timestamp, int status, String error, String message, String path) {
+    public ApiError(
+            LocalDateTime timestamp,
+            int status,
+            String error,
+            String message,
+            String path) {
+
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
@@ -43,4 +44,3 @@ public class ApiError {
         return this.path;
     }
 }
-
