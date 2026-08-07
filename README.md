@@ -16,7 +16,7 @@ This project demonstrates backend development concepts including layered archite
 - MySQL
 - Maven
 - Jakarta Validation
-- AWS EC2(deployment)
+- AWS EC2 (deployment)
 
 ## Features
 
@@ -88,6 +88,7 @@ Spring Security authenticates request
         |
         v
 Protected Student API
+```
 
 ## API Endpoints
 
