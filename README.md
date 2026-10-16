@@ -148,11 +148,10 @@ Supported directions:
 - Backend REST API completed
 - JWT authentication and role-based authorization implemented
 - Previously deployed on AWS EC2 with a cloud-hosted MySQL database
-- React frontend integration in progress
-
+- React frontend integrated with Spring Boot REST APIs
+  
 ## Next Steps
 
-- Connect React frontend with the backend API
 - Add automated tests
 - Containerize with Docker and Docker Compose
 - Explore microservices architecture
