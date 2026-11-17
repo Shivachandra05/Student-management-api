@@ -16,7 +16,7 @@ This project demonstrates backend development concepts including layered archite
 - MySQL
 - Maven
 - Jakarta Validation
-- AWS EC2 (deployment)
+- AWS EC2 and Amazon RDS MySQL (previous deployment)
 
 ## Features
 
@@ -143,11 +143,46 @@ Supported directions:
 - `asc`
 - `desc`
 
+## React Frontend
+
+A separate React frontend integrates with this backend for authentication and student management.
+
+- [Student Management Frontend](https://github.com/Shivachandra05/student-management-frontend)
+
+## Previous AWS Deployment
+
+This Spring Boot monolith was previously packaged as an executable JAR and deployed to an Ubuntu-based Amazon EC2 instance. Amazon RDS was used to provision a managed MySQL database.
+
+The historical AWS configuration included:
+
+- **Amazon EC2:** Ubuntu instance used for the Spring Boot JAR.
+- **Amazon RDS:** MySQL 8.4.7 database instance (`db.t4g.micro`).
+- **Security groups:** Rules included application port `8080` and MySQL port `3306`.
+- **Application artifact:** `app.jar` present on the EC2 host.
+
+These historical configuration screenshots support the infrastructure description but do not independently demonstrate a successful live API request or database connection. The prior cloud environment is no longer active.
+
+### AWS Infrastructure Screenshots
+
+The following screenshots document the previous AWS configuration. Sensitive identifying details have been obscured.
+
+**Amazon RDS MySQL configuration**
+
+![Amazon RDS MySQL instance configuration](screenshots/rds_mysql.png)
+
+**EC2 application files**
+
+![Spring Boot application JAR on Ubuntu EC2](screenshots/ec2_jar.png)
+
+**EC2 security group rules**
+
+![EC2 security group configuration](screenshots/ec2_security_groups.png)
+
 ## Project Status
 
 - Backend REST API completed
 - JWT authentication and role-based authorization implemented
-- Previously deployed on AWS EC2 with a cloud-hosted MySQL database
+- Previously deployed on AWS EC2 with Amazon RDS MySQL
 - React frontend integrated with Spring Boot REST APIs
   
 ## Next Steps
