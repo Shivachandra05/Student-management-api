@@ -168,15 +168,15 @@ The following screenshots document the previous AWS configuration. Sensitive ide
 
 **Amazon RDS MySQL configuration**
 
-![Amazon RDS MySQL instance configuration](rds_mysql.png)
+![Amazon RDS MySQL instance configuration](screenshots/rds_mysql.png)
 
 **EC2 application files**
 
-![Spring Boot application JAR on Ubuntu EC2](ec2_jar.png)
+![Spring Boot application JAR on Ubuntu EC2](screenshots/ec2_jar.png)
 
 **EC2 security group rules**
 
-![EC2 security group configuration](ec2_security_groups.png)
+![EC2 security group configuration](screenshots/ec2_security_groups.png)
 
 ## Project Status
 
