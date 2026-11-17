@@ -162,7 +162,21 @@ The historical AWS configuration included:
 
 These historical configuration screenshots support the infrastructure description but do not independently demonstrate a successful live API request or database connection. The prior cloud environment is no longer active.
 
-> Deployment screenshots are being prepared for this section with account identifiers and network addresses redacted.
+### AWS Infrastructure Screenshots
+
+The following screenshots document the previous AWS configuration. Sensitive identifying details have been obscured.
+
+**Amazon RDS MySQL configuration**
+
+![Amazon RDS MySQL instance configuration](rds_mysql.png)
+
+**EC2 application files**
+
+![Spring Boot application JAR on Ubuntu EC2](ec2_jar.png)
+
+**EC2 security group rules**
+
+![EC2 security group configuration](ec2_security_groups.png)
 
 ## Project Status
 
