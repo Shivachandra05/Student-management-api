@@ -16,7 +16,7 @@ This project demonstrates backend development concepts including layered archite
 - MySQL
 - Maven
 - Jakarta Validation
-- AWS EC2 (deployment)
+- AWS EC2 and Amazon RDS MySQL (previous deployment)
 
 ## Features
 
@@ -143,11 +143,32 @@ Supported directions:
 - `asc`
 - `desc`
 
+## React Frontend
+
+A separate React frontend integrates with this backend for authentication and student management.
+
+- [Student Management Frontend](https://github.com/Shivachandra05/student-management-frontend)
+
+## Previous AWS Deployment
+
+This Spring Boot monolith was previously packaged as an executable JAR and deployed to an Ubuntu-based Amazon EC2 instance. Amazon RDS was used to provision a managed MySQL database.
+
+The historical AWS configuration included:
+
+- **Amazon EC2:** Ubuntu instance used for the Spring Boot JAR.
+- **Amazon RDS:** MySQL 8.4.7 database instance (`db.t4g.micro`).
+- **Security groups:** Rules included application port `8080` and MySQL port `3306`.
+- **Application artifact:** `app.jar` present on the EC2 host.
+
+These historical configuration screenshots support the infrastructure description but do not independently demonstrate a successful live API request or database connection. The prior cloud environment is no longer active.
+
+> Deployment screenshots are being prepared for this section with account identifiers and network addresses redacted.
+
 ## Project Status
 
 - Backend REST API completed
 - JWT authentication and role-based authorization implemented
-- Previously deployed on AWS EC2 with a cloud-hosted MySQL database
+- Previously deployed on AWS EC2 with Amazon RDS MySQL
 - React frontend integrated with Spring Boot REST APIs
   
 ## Next Steps
