@@ -18,6 +18,15 @@ This project demonstrates backend development concepts including layered archite
 - Jakarta Validation
 - AWS EC2 and Amazon RDS MySQL (previous deployment)
 
+## 🎥 Project Demonstration
+
+Watch my 3-minute walkthrough of the full-stack
+Student Management System, featuring React,
+Spring Boot, JWT authentication, and student
+CRUD operations.
+
+▶️ [Watch the Project Demo on YouTube](https://youtu.be/lMu2n0j4WE8)
+
 ## Features
 
 - RESTful CRUD operations for student management
