@@ -18,7 +18,7 @@
   <description>Recovered from deployed jar</description>
 
   <properties>
-    <java.version>25</java.version>
+    <java.version>17</java.version>
 
     <!-- matches your BOOT-INF/lib -->
     <jjwt.version>0.11.5</jjwt.version>
