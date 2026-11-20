@@ -189,13 +189,131 @@ The following screenshots document the previous AWS configuration. Sensitive ide
 
 ## Project Status
 
-- Backend REST API completed
-- JWT authentication and role-based authorization implemented
-- Previously deployed on AWS EC2 with Amazon RDS MySQL
+- Spring Boot REST API completed with CRUD operations, pagination, sorting, and input validation
+- JWT authentication and role-based authorization implemented using Spring Security
 - React frontend integrated with Spring Boot REST APIs
-  
+- Previously deployed Spring Boot backend on AWS EC2 with Amazon RDS MySQL
+- Spring Boot backend containerized using Docker
+- MySQL 8 configured as a separate container using Docker Compose
+- Persistent MySQL storage implemented using Docker named volumes
+- Backend and database containers successfully tested locally
+
+## Run with Docker Compose
+
+### Prerequisites
+
+- Docker Desktop
+- Java 17
+- Apache Maven
+
+### Setup Instructions
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/Shivachandra05/Student-management-api.git
+cd Student-management-api
+```
+
+**2. Configure environment variables**
+
+Create a `.env` file in the project root directory:
+
+```env
+MYSQL_ROOT_PASSWORD=replace_with_secure_root_password
+MYSQL_APP_PASSWORD=replace_with_secure_app_password
+JWT_SECRET=replace_with_secure_jwt_secret
+```
+
+Use strong, unique passwords and a sufficiently long random JWT signing secret. Do not commit your actual `.env` file.
+
+**3. Build the Spring Boot application**
+
+```bash
+mvn clean package -DskipTests
+```
+
+This generates the executable JAR file inside the `target/` directory.
+
+**4. Build and start Docker containers**
+
+```bash
+docker compose up -d --build
+```
+
+Docker Compose starts two services:
+
+- **Spring Boot backend:** Runs on port `8080`
+- **MySQL 8 database:** Runs in a separate container on Docker's internal network
+
+The backend connects to MySQL using the Docker Compose service name `mysql`.
+
+**5. Verify running containers**
+
+```bash
+docker compose ps
+```
+
+**6. View backend logs**
+
+```bash
+docker compose logs -f backend
+```
+
+**7. Stop the application**
+
+```bash
+docker compose down
+```
+
+This removes the containers and Compose network while preserving the named database volume.
+
+### Docker Architecture
+
+```text
+React Frontend
+(Integrated separately; not yet containerized)
+        |
+        | HTTP / REST API
+        v
+Spring Boot Backend
+(Docker Container - Port 8080)
+        |
+        | JDBC / Spring Data JPA
+        v
+MySQL 8 Database
+(Docker Container - Port 3306)
+        |
+        v
+Docker Named Volume
+(Persistent Database Storage)
+```
+
+### Docker Features Implemented
+
+- Dockerized Spring Boot application using Eclipse Temurin Java 17
+- Multi-container backend and database setup using Docker Compose
+- Container-to-container communication through Docker networking
+- MySQL health check and backend startup dependency
+- Environment-based database and JWT configuration
+- Persistent database storage using Docker named volumes
+- Successful verification of authentication and REST API operations
+
+### Data Persistence
+
+MySQL data is stored in a named Docker volume, allowing database records to survive container restarts and normal container recreation.
+
+```bash
+docker compose restart
+docker compose down
+docker compose up -d
+```
+
+Avoid using `docker compose down -v` when you want to preserve the database, because the `-v` option removes Compose-managed named volumes.
+
 ## Next Steps
 
-- Add automated tests
-- Containerize with Docker and Docker Compose
+- Containerize the React frontend using Docker
+- Extend Docker Compose to orchestrate React, Spring Boot, and MySQL together
+- Expand automated unit and integration test coverage
 - Explore microservices architecture
